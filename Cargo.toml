@@ -1,0 +1,37 @@
+[package]
+name = "erc1155-wasm"
+version = "0.1.0"
+authors = ["Your Name <your.email@example.com>"]
+edition = "2018"
+description = "A highly optimized ERC1155 implementation in Rust for WebAssembly (WASM), providing token management for Ethereum-compatible environments."
+repository = "https://github.com/nzengi/spawn-erc1155"
+license = "MIT"
+keywords = ["erc1155", "wasm", "ethereum", "smart-contract", "webassembly"]
+categories = ["cryptography", "web-programming", "network-programming"]
+
+[dependencies]
+wasm-bindgen = "0.2"
+serde = { version = "1.0", features = ["derive"] }
+web-sys = { version = "0.3", features = ["console"] }
+
+[lib]
+crate-type = ["cdylib"]
+
+[profile.release]
+lto = true
+
+[package.metadata.wasm-pack.profile.release]
+wasm-opt = ["-Oz"]
+
+[features]
+default = ["console_error_panic_hook"]
+
+[dependencies.console_error_panic_hook]
+version = "0.1.6"
+optional = true
+
+[dev-dependencies]
+wasm-bindgen-test = "0.3"
+
+[build-dependencies]
+wasm-bindgen-cli = "0.2.73"
